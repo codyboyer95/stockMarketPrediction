@@ -143,6 +143,8 @@ print("Correct: ", correct)
 print("Incorrect: ", incorrect)
 print("Total Prediction Accuracy: ", accuracy)
 print("F1: ", f1)
+print("Positive Prediction Value: ", precision)
+print("True Positive Rate: ", recall)
 
 
 
