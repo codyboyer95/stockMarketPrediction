@@ -51,12 +51,32 @@ values = df.values
 n_train = math.floor(len(values)*3/4)
 train = values[:n_train, :]
 test = values[n_train:, :]
+
+
+# convert into dataset matrix
+step = 5
+def convertToMatrix(data, step):
+    X, Y = [], []
+    for i in range(len(data)-step):
+        d = i +step
+        X.append(data[i:d])
+        Y.append(data[d,])
+    return np.array(X), np.array(Y)
+
+
+trainX, trainY = convertToMatrix(train, step)
+testX, testY = convertToMatrix(test,step)
+
+
 # split into input and outputs
-trainX, trainY = train[:, :-1], train[:, -1]
-testX, testY = test[:, :-1], test[:, -1]
+#trainX, trainY = train[:, :-1], train[:, -1]
+#testX, testY = test[:, :-1], test[:, -1]
+trainY = train[5:, -1]
+testY = test[5:, -1]
+
 # reshape input to be 3D [samples, timesteps, features]
-train_X = trainX.reshape((trainX.shape[0], 1, trainX.shape[1]))
-test_X = testX.reshape((testX.shape[0], 1, testX.shape[1]))
+train_X = trainX.reshape((trainX.shape[0], 5, 2))
+test_X = testX.reshape((testX.shape[0], 5, 2))
 print(train_X.shape, trainY.shape, test_X.shape, testY.shape)
 
 
@@ -79,7 +99,7 @@ if not os.path.isdir("results"):
 model.fit(
     trainX,
     trainY,
-    epochs=500,
+    epochs=200,
     batch_size=64,
     validation_data=(testX, testY),
     verbose=2
