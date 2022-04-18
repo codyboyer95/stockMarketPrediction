@@ -94,6 +94,9 @@ if not os.path.isdir("results"):
     if not os.path.isdir("logs"):
         os.mkdir("logs")
 
+# Create some callbacks for tracking
+#checkpointer = ModelCheckpoint(os.path.join("results", "stockPredictionResults.h5"), save_weights_only=True, save_best_only=True, verbose=1)
+#tensorboard = TensorBoard(log_dir=os.path.join("logs", "stockPredictionLog"))
 
 # train the model
 model.fit(
@@ -102,6 +105,7 @@ model.fit(
     epochs=200,
     batch_size=64,
     validation_data=(testX, testY),
+#    callbacks=[tensorboard],
     verbose=2
 )
 
@@ -143,7 +147,7 @@ print("Correct: ", correct)
 print("Incorrect: ", incorrect)
 print("Total Prediction Accuracy: ", accuracy)
 print("F1: ", f1)
-print("Positive Prediction Value: ", precision)
+print("Positive Predictive Value: ", precision)
 print("True Positive Rate: ", recall)
 
 

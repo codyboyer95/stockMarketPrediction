@@ -112,19 +112,39 @@ testPredict = model.predict(testX)
 # check the accuracy
 correct = 0
 incorrect = 0
+true_pos = 0
+true_neg = 0
+false_pos = 0
+false_neg = 0
 for i in range(len(testPredict)):
-    if testPredict[i] > 0 and testY[i] > 0:
-        correct += 1
-    elif testPredict[i] < 0 and testY[i] < 0:
-        correct += 1
+    if testY[i] > 0:
+        if testPredict[i] > 0:
+            correct += 1
+            true_pos += 1
+        elif testPredict[i] < 0:
+            incorrect += 1
+            false_neg += 1
 
-    else:
-        incorrect += 1
+    elif testY[i] < 0:
+        if testPredict[i] < 0:
+            correct += 1
+            true_neg += 1
+        elif testPredict[i] > 0:
+            incorrect += 1
+            false_pos += 1
+
+
+precision = true_pos/(true_pos + false_pos)
+recall = true_pos/(true_pos + false_neg)
+f1 = 2*precision*recall/(precision+recall)
 
 accuracy = correct/(len(testPredict))
 print("Correct: ", correct)
 print("Incorrect: ", incorrect)
 print("Total Prediction Accuracy: ", accuracy)
+print("F1: ", f1)
+print("Positive Predictive Value: ", precision)
+print("True Positive Rate: ", recall)
 
 days = list(range(len(testPredict)))
 plt.plot(days, testY, label='sp500')
