@@ -13,3 +13,7 @@ python get_weather_data.py
 ```
 
 It will put the data into a pandas datafram and also export a file (with the same data) named "new_york_city.csv" that you can use for analysis.
+
+
+# source: https://www.youtube.com/watch?v=3eZ56HERVbk
+# source: https://machinelearningmastery.com/multivariate-time-series-forecasting-lstms-keras/
