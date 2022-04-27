@@ -11,7 +11,7 @@ from keras import metrics, losses
 from tensorflow.keras.callbacks import ModelCheckpoint, TensorBoard
 
 
-df = pd.read_csv('HistoricalPrices.csv')
+df = pd.read_csv('./data/HistoricalPrices.csv')
 df = df[' Close']
 # reverse dataframe
 df = df.loc[::-1]

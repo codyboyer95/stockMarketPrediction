@@ -1,5 +1,8 @@
+import os
 from wwo_hist import retrieve_hist_data
 
+
+os.chdir("./data")
 
 def run():
     frequency=24

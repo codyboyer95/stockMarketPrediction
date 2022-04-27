@@ -11,7 +11,7 @@ from keras.layers import Dense, SimpleRNN
 
 
 
-df2 = pd.read_csv('HistoricalPrices.csv')
+df2 = pd.read_csv('./data/HistoricalPrices.csv')
 
 # retain only date and closing price
 df2 = df2[['Date', ' Close']]
@@ -19,7 +19,7 @@ df2 = df2[['Date', ' Close']]
 df2['Date'] = pd.to_datetime(df2.Date)
 
 
-df3 = pd.read_csv('new_york_city.csv')
+df3 = pd.read_csv('./data/new_york_city.csv')
 
 # retain only date and max temp for this test
 df3 = df3[['date_time','maxtempC']]
